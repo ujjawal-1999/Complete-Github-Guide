@@ -1,0 +1,261 @@
+A Complete Guide to Git - 81 Git Commands that every developer will surely need for 
+						  collaborative work.
+
+
+Version Control System is like a backup system.It manages the changes in documents, computer programs and web sites.It provides a historical record of what you have done over time.
+
+VCS is also known as revision control, source control or Source Code Management(SCM).
+Examples:- RCS, Subversion, Bazaar.
+
+Git is a distributed version control software that is free and open source.
+It keeps track of changes made to a file or set of files, allows developers to work collaboratively, manages and stores versions of projects, helps in tracking project's progress history.
+
+Salient Features:-
+1. Can easily recover previous versions of our work.
+2. Conflicts can be resolved using the suggestions provided by the Git.
+3. We can see the complete history of all the changes.
+4. If there is loss of data, it can be restored from any of the client repositories.
+
+Git stores a snapshot of all the files and if some files has no changes then it is directly linked to its previous version.
+
+Difference between normal folder and Git repository:-
+1. Normal folder simply stores the files and directories, while a Git Repository stores the files along with their complete history.
+
+Some Git commands:-
+
+1. mkdir <folder name> --> creates a folder in the local system.
+
+2. cd <folder name> --> to go into the particular directory. We can directly write the 
+						folder name if the current directory is the same as the one where the folder is located. if the current directory is different from the directory where the folder is present then use the complete 'path name'.
+
+3. git init --> makes the current local repository as your Git repository. A message 
+				"Initialized empty Git repository" and the path where the Git repository
+				is created is shown. 
+
+4. ls -a --> Shows all the git files in the particular repository.
+
+** The 'git init' command creates a hidden '.git' folder. Deleting this folder, deletes the entire Git Repository.
+
+5. git config --global user.name <username> --> sets the identity name of the person working.
+
+6. git config --global user.email <email> --> sets the email of the person.
+
+7. git config --global core.editor <editor name> --> to configure the editor to be used to 
+													give commit message.
+
+** --global setting applies the particular setting to all the repositories, by default.
+
+8. git config --list --> lists all the configuration on the repository.
+
+9. git add <file name>  --> adds a particular file to the 'Staging Area' of a repository.
+
+10. git add . --> adds all the files of the current local repository to the 'Staging Area'.
+
+11. git status --> shows all the files that has started following the changes of the local
+					repository(known as 'tracking').
+
+** Once some changes has been made to any file, it needs to be added to the git repository, else it will not be 'Staged for commit'.
+
+** Staging Area is basically a file that stores the information of all the files that needs to be committed.
+
+12. git commit -m"Any message" --> Saves the work to the Git repository with the information
+									of the username and a commit message.
+
+13. git log --> shows all the commit details. This command shows a unique id called the 	
+				commit hash and SHA-1 hash.
+				
+** SHA-1 hash is a unique id of 40 alpha-numeric characters. All commits are stored in Git database by their hash values.
+
+14. git commit -a -m"Any message" --> adds and commits without using the 'add' command.
+			-a flags adds all the modified files to the staging area.
+			can also be used as -am instead.
+
+15. ls --> lists all files in a particular repository
+
+16. git rm --cached <file name> --> remove a file from the staging area of a Git repository.
+
+17. rm <file name> --> deletes the file from the system.
+
+** Restoring a file --> Look for the commit that had that file, copy the first 5 characters of the SHA-1 hash(can copy more than that also). 
+
+18. git checkout <hash value> <file name> --> restores the file to the staging area.
+
+**Discarding changes made to a file --> First check the Git status which shows that some files have been modified.
+
+19. git checkout . --> This will delete the latest changes of our work before committing.
+
+20. git log --oneline  --> lists the commits list with their hash in one line.
+
+** Going to a previous version of a repository:-
+
+21.  git checkout <commit hash> --> goes to the particular commit
+
+22. git checkout master --> return to the latest commit.
+
+23. git reset --hard <commit hash>  --> goes to a particular commit. Cannot revert back to 
+										the latest commit using this command. 
+
+24. git diff --> compares the current status of the file with the latest commit.
+				The lines with a (-)sign indicates the content of previous commit.
+				The lines with a (+)sign indicates the modified content.
+
+25. git diff --staged --> compares the current status of the file in the staging area.
+
+26. git diff --cached --> alternative to above command 25.
+
+27. git diff <hash value of commit> --> compare current state with any previous commit.
+
+28. git diff <hash 1> <hash 2>  --> compares any two commits.
+
+29. git diff HEAD HEAD~  --> compares the latest commit and the second last commit.
+
+** HEAD indicates the latest commit, HEAD~1 indicates 2nd last commit, HEAD~2 indicates 3rd last commit and so on.
+
+30. git show --> shows all the changes made to the latest commit along with the commit 
+				details.
+
+31. git show <hash value> --> shows details of a particular commit.
+
+32. git blame <file name>  --> shows the entire history of a file from creation point upto
+								current stage.
+
+33. git help <verb>
+34. git <verb>--help
+35. man git <verb>  --> provides details about a particular git command.
+
+36. git reflog  --> tracks changes in the local repository.
+					similar to 'git reflog show HEAD'.
+
+37. git reflog show --all  --> gets a complete reflog of all refs.
+
+38. git reflog show <branch name> --> shows reflog for a specific branch.
+
+39. git show HEAD --> shows all the changes made to the latest commit.
+
+**Taging :-  Taging means marking a particular commit as important for future references.
+			Types:- 1. Lightweight tag.
+			2. Annotated tag.
+** Lightweight tag :- Shows all the commit details as well as file details.
+
+40. git tag <tag name (e.g.:- v1.0)> --> tag to the latest commit.
+
+**Annotated tags :- Shows all the commit details and just the files chnaged.
+
+41. git tag -a <tag name> -m"Any tag message" --> creates an annotated tag.
+	
+42. git show <tag name> --> shows the details of a particular version.
+
+43. git tag -a <tag name> <hash value> -m"Any tag message" --> creates a tag to a particular 
+															commit.
+
+44. git log --oneline --decorate --> lists all git logs in one line alongwith their tag 
+									names.
+
+45. git tag -d <tag name> --> deletes a particular tag.
+
+**Working and merging branches to master:-
+
+46. git branch --> lists all the branches of a repository.
+					the asterick(*) symbol indicates the branch we are in.
+
+47. git branch <branch name> --> creates a new branch.
+
+48. git checkout <branch name> --> goes to that branch for working.
+
+** Any changes made to the master remains in master and any changes of a branch remains in that branch unless they both are merged.
+
+** If we add some files to the staging area of a branch and don't commit, then we cannot normally switch back to master or other branch.
+The only way out is using '--force' flag to go to that branch. In such a case, the changes at the staging area will be discarded.
+
+49. git checkout --force master --> goes to the master forcefully.
+
+**Merging to master:- Go to the master branch and then the below command
+
+50. git merge <branch name> --> merges branch to master.
+
+**Merging master to a branch :- Go to the branch
+
+51. git merge master --> merges master to that branch.
+
+** Reverting the merging:- Go to the branch from where we need to revert
+
+52. git reset --hard HEAD~ --> reverts to the last commit before merging.
+
+53. git branch -d <branch name> --> to delete a branch after merging to the master.
+
+54. git branch -D <branch name> --> delete a branch before merging to the master.
+
+** Stashing is used to save temporary changes of a branch.
+It helps to pause the current work without commiting it, when switching branches. Changes can be reverted back at any time.
+
+55. git stash save "Stash name" --> stashing a change before adding it to the staging area
+									Useful when we have to switch branch before adding a change.
+
+56. git stash --> stashes a change with the name of the latest commit message.
+
+57. git stash list --> lists all stashes in chronological order.
+
+** Every stash has a Stash Id generated automarically.
+
+58. git diff stash@{<stash id>} --> shows details of the stash.
+
+59. git stash apply stash@{<stash id>} --> applying a stash. After applying a stash, the 
+										stash is not removed from the stash list. So, it needs to be deleted manually, using the following command.
+
+60. git stash drop stash@{<stash id>} --> delete a stash from the list.
+
+61. git stash pop --> applies stash@{0} and then removes it from the list.
+
+62. git stash clear --> clears the stash list.
+
+63. git stash show --> shows the latest stash details.
+
+64. git stash show stash@{<stash id>} --> shows details of a particular stash.
+
+**Remote Repository:- repository hosted on the internet.
+
+65. git clone <url> --> make a local repository copy of a remote repository.
+
+**The URL of a remote repository is called remote. By default, remote has a nickname 'origin'.
+
+66. git remote --> shows the current repository we are in.
+
+67. git remote add <nickname> <URL> --> adding a nickname to a remote.
+
+68. git remote add origin --> origin is added as the nickname to the URL.
+
+69. git push -u origin master --> when pushing for the first time.
+
+70. git push origin master --> for any further pushes. This synchronizes the local 
+							repository with the main remote repository.
+
+71. git pull origin master --> fetches data from the remote repository and merges it to the 
+							local repository.
+
+72. git config --global http.proxy http://proxyUsername:proxyPassword@proxy.server.com:port
+	--> setting a proxy globally.
+
+73. git config --global http.proxy http://172.16.199.40:8080 --> set a proxy that has no 
+														username or password like college 
+														LAN connections.
+
+74. git config --global --unset http.proxy --> unset a proxy globally.
+
+75. git revert <hash value> --> create a commit that undoes all the changes made in the 
+								particular commit and apply it to the current branch.
+
+76. git reset <file name> --> remove file from the staging area,but leave the current 
+							working directory unchanged.
+
+77. git clean -n --> shows which file would be removed from working directory.
+
+78. git clean -f --> cleans the required files from working directory.
+
+79. git fetch remote <branch name> --> fetches a specific branch from the repository.
+
+80. git config --system core.editor <editor name> --> set a particular text editor as
+													default.
+
+81. git config --global --edit --> open global configuration file in a text editor.
+
+<-------------------------------- Useful Git Commands ------------------------------------> 
